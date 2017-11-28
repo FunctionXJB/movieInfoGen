@@ -139,6 +139,17 @@ public class movieInfoGen {
         System.out.print("◎豆瓣链接　");
         System.out.println("https://movie.douban.com/subject/"+ID+"/");
         
+        //如果是剧集，输出集数
+        loc=json.indexOf("\"episodes\": ");
+        if(loc!=-1) {
+        	System.out.print("◎集　　数　");
+        	tmp=json.substring(loc+14);
+        	loc_end=tmp.indexOf("]");
+        	tmp=tmp.substring(0, loc_end-1);
+            tmp=tmp.replace("\", \"", "/");
+            System.out.println(tmp);
+        }
+        
         //输出片长
         System.out.print("◎片　　长　");
         loc=json.indexOf("\"movie_duration\": ");

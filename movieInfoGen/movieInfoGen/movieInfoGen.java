@@ -9,6 +9,7 @@ import java.net.URLConnection;
 import java.util.Scanner;
 //26357945
 //24750534
+//27000999
 public class movieInfoGen {
 
     public static void main(String[] args) throws Exception {
@@ -46,10 +47,18 @@ public class movieInfoGen {
         loc=json.indexOf("\"aka\": ");
         tmp=json.substring(loc+9);
         loc_end=tmp.indexOf("]");
-        tmp=tmp.substring(0, loc_end-1);
-        tmp=tmp.replace("\", \"", "/");
-        tmp=tmp.replace("\\", "");
-        System.out.println(tmp);
+        if(loc_end==-1){
+        	loc=json.indexOf("\"title\": ");
+            tmp=json.substring(loc+10);
+            loc_end=tmp.indexOf("\"");
+            tmp=tmp.substring(0, loc_end);
+        }
+        else{
+	        tmp=tmp.substring(0, loc_end-1);
+	        tmp=tmp.replace("\", \"", "/");
+	        tmp=tmp.replace("\\", "");
+        }
+	    System.out.println(tmp);
         
         //输出年代
         System.out.print("◎年　　代　");
